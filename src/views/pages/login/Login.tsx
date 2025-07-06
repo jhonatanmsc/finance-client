@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom'
 import {
   CButton,
   CCard,
@@ -6,7 +5,7 @@ import {
   CCardGroup,
   CCol,
   CContainer,
-  CForm,
+  CForm, CFormCheck,
   CFormInput,
   CInputGroup,
   CInputGroupText,
@@ -15,18 +14,28 @@ import {
 import CIcon from '@coreui/icons-react'
 import { cilLockLocked, cilUser } from '@coreui/icons'
 import {FormEvent, useState} from "react";
-import api from "@/services/authApi";
+import api from "@/services/baseApi";
 
 export default function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [rememberMe, setRememberMe] = useState(false);
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    alert("hello")
-    let res = api.post('/login', { username, password })
-    alert("jajajajja")
-    console.log(res)
+    type ObtainTokenProps = {
+      access: string,
+      refresh: string
+    }
+    let res: ObtainTokenProps = await api.post('/token/', { username, password })
+    if (rememberMe) {
+      localStorage.setItem('accessToken', JSON.stringify(res.access))
+      localStorage.setItem('refresh', JSON.stringify(res.refresh))
+    } else {
+      sessionStorage.setItem('accessToken', JSON.stringify(res.access))
+      sessionStorage.setItem('refresh', JSON.stringify(res.refresh))
+    }
+    window.location.href = '/dashboard'
   }
 
   return (
@@ -61,6 +70,15 @@ export default function Login() {
                         autoComplete="current-password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
+                      />
+                    </CInputGroup>
+                    <CInputGroup className="mb-4">
+                      <CFormCheck
+                        type="checkbox"
+                        id="invalidCheck"
+                        label="Lembre de mim"
+                        checked={rememberMe}
+                        onChange={(e) => setRememberMe(e.target.checked)}
                       />
                     </CInputGroup>
                     <CRow>

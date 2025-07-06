@@ -18,13 +18,20 @@ import {
   cilLockLocked,
   cilSettings,
   cilTask,
-  cilUser,
+  cilUser, cilAccountLogout,
 } from '@coreui/icons'
 import CIcon from '@coreui/icons-react'
 
 import avatar8 from './../../assets/images/avatars/8.jpg'
 
 const AppHeaderDropdown = () => {
+  const logout = () => {
+    localStorage.removeItem('accessToken')
+    localStorage.removeItem('refresh')
+    sessionStorage.removeItem('accessToken')
+    sessionStorage.removeItem('refresh')
+    window.location.reload()
+  }
   return (
     <CDropdown variant="nav-item">
       <CDropdownToggle placement="bottom-end" className="py-0 pe-0" caret={false}>
@@ -84,9 +91,9 @@ const AppHeaderDropdown = () => {
           </CBadge>
         </CDropdownItem>
         <CDropdownDivider />
-        <CDropdownItem href="#">
-          <CIcon icon={cilLockLocked} className="me-2" />
-          Lock Account
+        <CDropdownItem onClick={() => logout()}>
+          <CIcon icon={cilAccountLogout} className="me-2" />
+          Sair
         </CDropdownItem>
       </CDropdownMenu>
     </CDropdown>

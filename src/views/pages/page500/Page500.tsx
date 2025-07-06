@@ -18,18 +18,18 @@ export default function Page500() {
           <CCol md={6}>
             <span className="clearfix">
               <h1 className="float-start display-3 me-4">500</h1>
-              <h4 className="pt-3">Houston, we have a problem!</h4>
+              <h4 className="pt-3">Houston, temos um problema!</h4>
               <p className="text-body-secondary float-start">
-                The page you are looking for is temporarily unavailable.
+                A página buscada não está disponível no momento
               </p>
             </span>
-            <CInputGroup className="input-prepend">
-              <CInputGroupText>
-                <CIcon icon={cilMagnifyingGlass} />
-              </CInputGroupText>
-              <CFormInput type="text" placeholder="What are you looking for?" />
-              <CButton color="info">Search</CButton>
-            </CInputGroup>
+            {/*<CInputGroup className="input-prepend">*/}
+            {/*  <CInputGroupText>*/}
+            {/*    <CIcon icon={cilMagnifyingGlass} />*/}
+            {/*  </CInputGroupText>*/}
+            {/*  <CFormInput type="text" placeholder="What are you looking for?" />*/}
+            {/*  <CButton color="info">Search</CButton>*/}
+            {/*</CInputGroup>*/}
           </CCol>
         </CRow>
       </CContainer>
