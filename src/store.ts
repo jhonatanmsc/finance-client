@@ -3,8 +3,10 @@ import { legacy_createStore as createStore } from 'redux'
 const initialState = {
   sidebarShow: true,
   theme: 'light',
+  sidebarUnfoldable: true,
 }
 
+// @ts-ignore
 const changeState = (state = initialState, { type, ...rest }) => {
   switch (type) {
     case 'set':
@@ -16,3 +18,4 @@ const changeState = (state = initialState, { type, ...rest }) => {
 
 const store = createStore(changeState)
 export default store
+export type RootState = typeof initialState

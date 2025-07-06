@@ -1,5 +1,4 @@
-import React from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux';
 
 import {
   CCloseButton,
@@ -8,22 +7,26 @@ import {
   CSidebarFooter,
   CSidebarHeader,
   CSidebarToggler,
-} from '@coreui/react'
-import CIcon from '@coreui/icons-react'
+} from '@coreui/react';
+import CIcon from '@coreui/icons-react';
 
-import { AppSidebarNav } from './AppSidebarNav'
+import { AppSidebarNav } from './AppSidebarNav';
 
-import { logo } from 'src/assets/brand/logo'
-import { sygnet } from 'src/assets/brand/sygnet'
+import { logo } from '@/assets/brand/logo';
+import { sygnet } from '@/assets/brand/sygnet';
 
 // sidebar nav config
-import navigation from '../_nav'
+import navigation from '../_nav';
+import {RootState} from "@/store";
+import {Link} from "react-router-dom";
+import {memo} from "react";
+import {cibCashapp} from "@coreui/icons";
 
 const AppSidebar = () => {
   const dispatch = useDispatch()
-  const unfoldable = useSelector((state) => state.sidebarUnfoldable)
-  const sidebarShow = useSelector((state) => state.sidebarShow)
-
+  const unfoldable = useSelector((state: RootState) => state.sidebarUnfoldable)
+  const sidebarShow = useSelector((state: RootState) => state.sidebarShow)
+  // cib-cashapp
   return (
     <CSidebar
       className="border-end"
@@ -36,9 +39,14 @@ const AppSidebar = () => {
       }}
     >
       <CSidebarHeader className="border-bottom">
-        <CSidebarBrand to="/">
-          <CIcon customClassName="sidebar-brand-full" icon={logo} height={32} />
-          <CIcon customClassName="sidebar-brand-narrow" icon={sygnet} height={32} />
+        <CSidebarBrand>
+          <Link to="/" className="text-decoration-none">
+            {/*<CIcon customClassName="sidebar-brand-full" icon={logo} height={32} />*/}
+            <div className="d-flex">
+              <CIcon icon={cibCashapp} className="text-warning" size="xxl"/> <h3 className="ms-2 text-warning sidebar-brand-full">Finapp</h3>
+            </div>
+            {/*<CIcon customClassName="sidebar-brand-narrow" icon={sygnet} height={32} />*/}
+          </Link>
         </CSidebarBrand>
         <CCloseButton
           className="d-lg-none"
@@ -56,4 +64,4 @@ const AppSidebar = () => {
   )
 }
 
-export default React.memo(AppSidebar)
+export default memo(AppSidebar)

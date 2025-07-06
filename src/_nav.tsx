@@ -1,4 +1,3 @@
-import React from 'react'
 import CIcon from '@coreui/icons-react'
 import {
   cilBell,
@@ -15,6 +14,7 @@ import {
   cilStar,
 } from '@coreui/icons'
 import { CNavGroup, CNavItem, CNavTitle } from '@coreui/react'
+import {Fragment} from "react";
 
 const _nav = [
   {
@@ -66,10 +66,10 @@ const _nav = [
       {
         component: CNavItem,
         name: (
-          <React.Fragment>
+          <Fragment>
             {'Calendar'}
             <CIcon icon={cilExternalLink} size="sm" className="ms-2" />
-          </React.Fragment>
+          </Fragment>
         ),
         href: 'https://coreui.io/react/docs/components/calendar/',
         badge: {
@@ -134,10 +134,10 @@ const _nav = [
       {
         component: CNavItem,
         name: (
-          <React.Fragment>
+          <Fragment>
             {'Smart Table'}
             <CIcon icon={cilExternalLink} size="sm" className="ms-2" />
-          </React.Fragment>
+          </Fragment>
         ),
         href: 'https://coreui.io/react/docs/components/smart-table/',
         badge: {
@@ -168,10 +168,10 @@ const _nav = [
       {
         component: CNavItem,
         name: (
-          <React.Fragment>
+          <Fragment>
             {'Virtual Scroller'}
             <CIcon icon={cilExternalLink} size="sm" className="ms-2" />
-          </React.Fragment>
+          </Fragment>
         ),
         href: 'https://coreui.io/react/docs/components/virtual-scroller/',
         badge: {
@@ -205,10 +205,10 @@ const _nav = [
       {
         component: CNavItem,
         name: (
-          <React.Fragment>
+          <Fragment>
             {'Loading Button'}
             <CIcon icon={cilExternalLink} size="sm" className="ms-2" />
-          </React.Fragment>
+          </Fragment>
         ),
         href: 'https://coreui.io/react/docs/components/loading-button/',
         badge: {
@@ -236,10 +236,10 @@ const _nav = [
       {
         component: CNavItem,
         name: (
-          <React.Fragment>
+          <Fragment>
             {'Multi Select'}
             <CIcon icon={cilExternalLink} size="sm" className="ms-2" />
-          </React.Fragment>
+          </Fragment>
         ),
         href: 'https://coreui.io/react/docs/forms/multi-select/',
         badge: {
@@ -260,10 +260,10 @@ const _nav = [
       {
         component: CNavItem,
         name: (
-          <React.Fragment>
+          <Fragment>
             {'Range Slider'}
             <CIcon icon={cilExternalLink} size="sm" className="ms-2" />
-          </React.Fragment>
+          </Fragment>
         ),
         href: 'https://coreui.io/react/docs/forms/range-slider/',
         badge: {
@@ -274,10 +274,10 @@ const _nav = [
       {
         component: CNavItem,
         name: (
-          <React.Fragment>
+          <Fragment>
             {'Rating'}
             <CIcon icon={cilExternalLink} size="sm" className="ms-2" />
-          </React.Fragment>
+          </Fragment>
         ),
         href: 'https://coreui.io/react/docs/forms/rating/',
         badge: {
@@ -298,10 +298,10 @@ const _nav = [
       {
         component: CNavItem,
         name: (
-          <React.Fragment>
+          <Fragment>
             {'Date Picker'}
             <CIcon icon={cilExternalLink} size="sm" className="ms-2" />
-          </React.Fragment>
+          </Fragment>
         ),
         href: 'https://coreui.io/react/docs/forms/date-picker/',
         badge: {
@@ -321,10 +321,10 @@ const _nav = [
       {
         component: CNavItem,
         name: (
-          <React.Fragment>
+          <Fragment>
             {'Time Picker'}
             <CIcon icon={cilExternalLink} size="sm" className="ms-2" />
-          </React.Fragment>
+          </Fragment>
         ),
         href: 'https://coreui.io/react/docs/forms/time-picker/',
         badge: {

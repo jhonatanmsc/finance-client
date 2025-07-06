@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import {FormEvent, useState} from 'react'
 import {
   CButton,
   CCard,
@@ -16,13 +16,13 @@ import {
   CInputGroupText,
   CRow,
 } from '@coreui/react'
-import { DocsComponents, DocsExample } from 'src/components'
+import { DocsComponents, DocsExample } from '@/components'
 
 const CustomStyles = () => {
   const [validated, setValidated] = useState(false)
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     const form = event.currentTarget
-    if (form.checkValidity() === false) {
+    if (!form.checkValidity()) {
       event.preventDefault()
       event.stopPropagation()
     }
@@ -97,9 +97,9 @@ const CustomStyles = () => {
 
 const BrowserDefaults = () => {
   const [validated, setValidated] = useState(false)
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     const form = event.currentTarget
-    if (form.checkValidity() === false) {
+    if (!form.checkValidity()) {
       event.preventDefault()
       event.stopPropagation()
     }
@@ -169,9 +169,9 @@ const BrowserDefaults = () => {
 
 const Tooltips = () => {
   const [validated, setValidated] = useState(false)
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     const form = event.currentTarget
-    if (form.checkValidity() === false) {
+    if (!form.checkValidity()) {
       event.preventDefault()
       event.stopPropagation()
     }
