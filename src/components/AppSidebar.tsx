@@ -39,14 +39,12 @@ const AppSidebar = () => {
       }}
     >
       <CSidebarHeader className="border-bottom">
-        <CSidebarBrand>
-          <Link to="/" className="text-decoration-none">
+        <CSidebarBrand to="/" className="text-decoration-none">
             {/*<CIcon customClassName="sidebar-brand-full" icon={logo} height={32} />*/}
             <div className="d-flex">
               <CIcon icon={cibCashapp} className="text-warning" size="xxl"/> <h3 className="ms-2 text-warning sidebar-brand-full">Finapp</h3>
             </div>
             {/*<CIcon customClassName="sidebar-brand-narrow" icon={sygnet} height={32} />*/}
-          </Link>
         </CSidebarBrand>
         <CCloseButton
           className="d-lg-none"

@@ -1,7 +1,7 @@
 import CIcon from '@coreui/icons-react'
 import {
   cilBell,
-  cilCalculator,
+  cilCalculator, cilCart,
   cilChartPie,
   cilCursor,
   cilDescription,
@@ -15,6 +15,7 @@ import {
 } from '@coreui/icons'
 import { CNavGroup, CNavItem, CNavTitle } from '@coreui/react'
 import {Fragment} from "react";
+import Contributions from "@/views/contributions/Contributions";
 
 const _nav = [
   {
@@ -26,6 +27,12 @@ const _nav = [
       color: 'info',
       text: 'NEW',
     },
+  },
+  {
+    component: CNavItem,
+    name: 'Contribuições',
+    to: '/contribuicoes',
+    icon: <CIcon icon={cilCart} customClassName="nav-icon" />,
   },
   {
     component: CNavTitle,

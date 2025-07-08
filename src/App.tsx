@@ -7,6 +7,7 @@ import './scss/style.scss'
 
 // We use those styles to show code examples, you should remove them in your application.
 import './scss/examples.scss'
+import Page401 from "@/views/pages/page401/Page401";
 
 // Containers
 const DefaultLayout = lazy(() => import('./layout/DefaultLayout'))
@@ -53,7 +54,8 @@ const App = () => {
       >
         <Routes>
           <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />s
+          <Route path="/register" element={<Register />} />
+          <Route path="/401" element={<Page401 />} />
           <Route path="/404" element={<Page404 />} />
           <Route path="/500" element={<Page500 />} />
           <Route element={<PrivateRoute />}>

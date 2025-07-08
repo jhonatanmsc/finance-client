@@ -29,13 +29,13 @@ export default function Login() {
     }
     let res: ObtainTokenProps = await api.post('/token/', { username, password })
     if (rememberMe) {
-      localStorage.setItem('accessToken', JSON.stringify(res.access))
-      localStorage.setItem('refresh', JSON.stringify(res.refresh))
+      await localStorage.setItem('accessToken', res.access);
+      await localStorage.setItem('refreshToken', res.refresh);
     } else {
-      sessionStorage.setItem('accessToken', JSON.stringify(res.access))
-      sessionStorage.setItem('refresh', JSON.stringify(res.refresh))
+      await sessionStorage.setItem('accessToken', res.access);
+      await sessionStorage.setItem('refreshToken', res.refresh);
     }
-    window.location.href = '/dashboard'
+    window.location.href = '/dashboard';
   }
 
   return (
