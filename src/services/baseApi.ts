@@ -10,10 +10,7 @@ api.interceptors.request.use(config => {
     const token = localStorage.getItem('accessToken') || sessionStorage.getItem('accessToken');
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
-    } else {
-      alert("teste")
     }
-    console.log(config.headers)
     return config;
   }, error => {
     return Promise.reject(error);
@@ -23,18 +20,18 @@ api.interceptors.request.use(config => {
 api.interceptors.response.use(
   response => response.data,
   error => {
-    console.log(error.request)
     if (error.response?.status === 401) {
       let refreshToken = localStorage.getItem('refreshToken') || sessionStorage.getItem('refreshToken');
       if (refreshToken) {
         let new_token = "";
-        api.post('/token/refresh/', {"refresh": refreshToken}).then(res => {
-          new_token = res.data.data.access_token;
+        api.post('/token/refresh/', {"refresh": refreshToken}).then((res: any) => {
+          new_token = res.access;
           if (localStorage.getItem('refreshToken')) {
-            localStorage.setItem('accessToken', res.data.data.access_token);
+            localStorage.setItem('accessToken', new_token);
           } else if (sessionStorage.getItem('refreshToken')) {
-            sessionStorage.setItem('accessToken', res.data.data.access_token);
+            sessionStorage.setItem('accessToken', new_token);
           }
+          window.location.reload();
         }).catch(err => {
           if (err.response?.status === 401) {
             localStorage.removeItem('accessToken');
