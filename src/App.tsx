@@ -1,6 +1,6 @@
-import { lazy, Suspense, useEffect } from 'react'
+import React, { lazy, Suspense, useEffect } from 'react'
 import {BrowserRouter, HashRouter, Navigate, Outlet, Route, Routes} from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import {Provider, useSelector} from 'react-redux'
 
 import { CSpinner, useColorModes } from '@coreui/react'
 import './scss/style.scss'
@@ -8,6 +8,8 @@ import './scss/style.scss'
 // We use those styles to show code examples, you should remove them in your application.
 import './scss/examples.scss'
 import Page401 from "@/views/pages/page401/Page401";
+import store from "@/store";
+import {ToastStackMessage} from "@/components/ToastMessage";
 
 // Containers
 const DefaultLayout = lazy(() => import('./layout/DefaultLayout'))
@@ -44,26 +46,29 @@ const App = () => {
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    <BrowserRouter>
-      <Suspense
-        fallback={
-          <div className="pt-3 text-center">
-            <CSpinner color="primary" variant="grow" />
-          </div>
-        }
-      >
-        <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/401" element={<Page401 />} />
-          <Route path="/404" element={<Page404 />} />
-          <Route path="/500" element={<Page500 />} />
-          <Route element={<PrivateRoute />}>
-            <Route path="*" element={<DefaultLayout />} />
-          </Route>
-        </Routes>
-      </Suspense>
-    </BrowserRouter>
+    <Provider store={store}>
+      <ToastStackMessage />
+      <BrowserRouter>
+        <Suspense
+          fallback={
+            <div className="pt-3 text-center">
+              <CSpinner color="primary" variant="grow" />
+            </div>
+          }
+        >
+          <Routes>
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/401" element={<Page401 />} />
+            <Route path="/404" element={<Page404 />} />
+            <Route path="/500" element={<Page500 />} />
+            <Route element={<PrivateRoute />}>
+              <Route path="*" element={<DefaultLayout />} />
+            </Route>
+          </Routes>
+        </Suspense>
+      </BrowserRouter>
+    </Provider>
   )
 }
 

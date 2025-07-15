@@ -1,4 +1,6 @@
 import axios from 'axios';
+import store from "@/store";
+import {cilInfo} from "@coreui/icons";
 
 const api = axios.create({
   baseURL: import.meta.env.VITE_API_BASE_URL,
@@ -20,6 +22,16 @@ api.interceptors.request.use(config => {
 api.interceptors.response.use(
   response => response.data,
   error => {
+    if (!error?.response) {
+      store.dispatch({
+        type: 'addMessages',
+        messages: [{
+          text: "O Servidor está offline",
+          icon: cilInfo,
+          style: "text-danger"
+        }]
+      })
+    }
     if (error.response?.status === 401) {
       let refreshToken = localStorage.getItem('refreshToken') || sessionStorage.getItem('refreshToken');
       if (refreshToken) {
