@@ -1,4 +1,4 @@
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux'
 
 import {
   CCloseButton,
@@ -7,20 +7,16 @@ import {
   CSidebarFooter,
   CSidebarHeader,
   CSidebarToggler,
-} from '@coreui/react';
-import CIcon from '@coreui/icons-react';
+} from '@coreui/react'
+import CIcon from '@coreui/icons-react'
 
-import { AppSidebarNav } from './AppSidebarNav';
-
-import { logo } from '@/assets/brand/logo';
-import { sygnet } from '@/assets/brand/sygnet';
+import { AppSidebarNav } from './AppSidebarNav'
 
 // sidebar nav config
-import navigation from '../_nav';
-import {RootState} from "@/store";
-import {Link} from "react-router-dom";
-import {memo} from "react";
-import {cibCashapp} from "@coreui/icons";
+import navigation from '../_nav'
+import { RootState } from '@/store'
+import { memo } from 'react'
+import { cibCashapp } from '@coreui/icons'
 
 const AppSidebar = () => {
   const dispatch = useDispatch()
@@ -40,11 +36,12 @@ const AppSidebar = () => {
     >
       <CSidebarHeader className="border-bottom">
         <CSidebarBrand to="/" className="text-decoration-none">
-            {/*<CIcon customClassName="sidebar-brand-full" icon={logo} height={32} />*/}
-            <div className="d-flex">
-              <CIcon icon={cibCashapp} className="text-warning" size="xxl"/> <h3 className="ms-2 text-warning sidebar-brand-full">Finapp</h3>
-            </div>
-            {/*<CIcon customClassName="sidebar-brand-narrow" icon={sygnet} height={32} />*/}
+          {/*<CIcon customClassName="sidebar-brand-full" icon={logo} height={32} />*/}
+          <div className="d-flex">
+            <CIcon icon={cibCashapp} className="text-warning" size="xxl" />{' '}
+            <h3 className="ms-2 text-warning sidebar-brand-full">Finapp</h3>
+          </div>
+          {/*<CIcon customClassName="sidebar-brand-narrow" icon={sygnet} height={32} />*/}
         </CSidebarBrand>
         <CCloseButton
           className="d-lg-none"

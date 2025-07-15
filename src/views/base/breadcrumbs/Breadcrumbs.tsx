@@ -8,9 +8,9 @@ import {
   CRow,
   CLink,
 } from '@coreui/react'
-import {DocsComponents, DocsExample} from "../../../components";
+import { DocsComponents, DocsExample } from '../../../components'
 
-export default function Breadcrumbs(){
+export default function Breadcrumbs() {
   return (
     <CRow>
       <CCol xs={12}>

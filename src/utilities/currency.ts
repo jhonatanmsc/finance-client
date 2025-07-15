@@ -1,4 +1,4 @@
-import Decimal from "decimal.js";
+import Decimal from 'decimal.js'
 
 export function decimalToBRL(value: string | number, minFraction = 2): string {
   const decimal = new Decimal(value)

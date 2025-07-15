@@ -3,6 +3,7 @@
   "version": "5.4.0",
   "description": "CoreUI Free React Admin Template",
   "homepage": ".",
+  "type": "module",
   "bugs": {
     "url": "https://github.com/coreui/coreui-free-react-admin-template/issues"
   },
@@ -14,9 +15,18 @@
   "author": "The CoreUI Team (https://github.com/orgs/coreui/people)",
   "scripts": {
     "build": "vite build",
-    "lint": "eslint",
+    "lint": "eslint 'src/**/*.{ts,tsx}'",
     "serve": "vite preview",
-    "start": "vite"
+    "start": "vite",
+    "format": "prettier --write \"src/**/*.{ts, tsx, css}\"",
+    "format:check": "prettier --check \"src/**/*.{js,jsx,ts,tsx,json,css,md}\"",
+    "test": "echo \"No test specified\" && exit 0"
+  },
+  "lint-staged": {
+    "src/**/*.{ts,tsx,js,jsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ]
   },
   "dependencies": {
     "@coreui/chartjs": "^4.1.0",
@@ -47,18 +57,22 @@
   "devDependencies": {
     "@types/node": "^24.0.10",
     "@types/prop-types": "^15.7.15",
-    "@typescript-eslint/eslint-plugin": "^8.35.1",
-    "@typescript-eslint/parser": "^8.35.1",
+    "@typescript-eslint/eslint-plugin": "^8.37.0",
+    "@typescript-eslint/parser": "^8.37.0",
     "@vitejs/plugin-react": "^4.3.4",
     "autoprefixer": "^10.4.20",
-    "eslint": "^9.30.1",
+    "eslint": "^9.31.0",
     "eslint-config-prettier": "^10.1.5",
     "eslint-plugin-import": "^2.32.0",
     "eslint-plugin-jsx-a11y": "^6.10.2",
     "eslint-plugin-prettier": "^5.5.1",
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-unused-imports": "^4.1.4",
     "globals": "^15.15.0",
+    "husky": "^9.1.7",
+    "jiti": "^2.4.2",
+    "lint-staged": "^16.1.2",
     "postcss": "^8.5.2",
     "prettier": "^3.5.1",
     "sass": "^1.85.0",

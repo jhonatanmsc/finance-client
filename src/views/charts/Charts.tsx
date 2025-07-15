@@ -12,7 +12,6 @@ import DocsLink from '@/components/DocsLink'
 const Charts = () => {
   const random = () => Math.round(Math.random() * 100)
 
-
   return (
     <CRow>
       <CCol xs={12}></CCol>

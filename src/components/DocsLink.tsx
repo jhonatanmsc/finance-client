@@ -1,10 +1,10 @@
 import { CLink } from '@coreui/react'
-import {memo} from "react";
+import { memo } from 'react'
 
 type DocsLinkProps = {
-  href?: string,
-  name?: string,
-  text?: string,
+  href?: string
+  name?: string
+  text?: string
 }
 
 const DocsLink = (props: DocsLinkProps) => {
@@ -26,7 +26,5 @@ const DocsLink = (props: DocsLinkProps) => {
     </div>
   )
 }
-
-
 
 export default memo(DocsLink)

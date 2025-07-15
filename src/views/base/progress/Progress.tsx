@@ -1,5 +1,5 @@
 import { CCard, CCardBody, CCardHeader, CCol, CProgress, CProgressBar, CRow } from '@coreui/react'
-import { DocsComponents, DocsExample } from '../../../components';
+import { DocsComponents, DocsExample } from '../../../components'
 
 const Progress = () => {
   return (

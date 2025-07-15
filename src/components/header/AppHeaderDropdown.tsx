@@ -15,10 +15,10 @@ import {
   cilCommentSquare,
   cilEnvelopeOpen,
   cilFile,
-  cilLockLocked,
   cilSettings,
   cilTask,
-  cilUser, cilAccountLogout,
+  cilUser,
+  cilAccountLogout,
 } from '@coreui/icons'
 import CIcon from '@coreui/icons-react'
 

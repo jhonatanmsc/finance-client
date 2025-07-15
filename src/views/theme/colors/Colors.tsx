@@ -1,8 +1,8 @@
-import React, { useEffect, useState, createRef } from 'react';
-import classNames from 'classnames';
-import { CRow, CCol, CCard, CCardHeader, CCardBody } from '@coreui/react';
-import { rgbToHex } from '@coreui/utils';
-import DocsLink from '@/components/DocsLink';
+import React, { useEffect, useState, createRef } from 'react'
+import classNames from 'classnames'
+import { CRow, CCol, CCard, CCardHeader, CCardBody } from '@coreui/react'
+import { rgbToHex } from '@coreui/utils'
+import DocsLink from '@/components/DocsLink'
 
 const ThemeView = () => {
   const [color, setColor] = useState('rgb(255, 255, 255)')
@@ -32,8 +32,8 @@ const ThemeView = () => {
 }
 
 type ThemeColorProps = {
-  children?: React.ReactNode,
-  className?: string,
+  children?: React.ReactNode
+  className?: string
 }
 
 const ThemeColor = ({ className, children }: ThemeColorProps) => {

@@ -5,7 +5,8 @@ import {
   CCardGroup,
   CCol,
   CContainer,
-  CForm, CFormCheck,
+  CForm,
+  CFormCheck,
   CFormInput,
   CInputGroup,
   CInputGroupText,
@@ -13,29 +14,29 @@ import {
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 import { cilLockLocked, cilUser } from '@coreui/icons'
-import {FormEvent, useState} from "react";
-import api from "@/services/baseApi";
+import { FormEvent, useState } from 'react'
+import api from '@/services/baseApi'
 
 export default function Login() {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [rememberMe, setRememberMe] = useState(false);
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
+  const [rememberMe, setRememberMe] = useState(false)
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     type ObtainTokenProps = {
-      access: string,
+      access: string
       refresh: string
     }
     let res: ObtainTokenProps = await api.post('/token/', { username, password })
     if (rememberMe) {
-      await localStorage.setItem('accessToken', res.access);
-      await localStorage.setItem('refreshToken', res.refresh);
+      await localStorage.setItem('accessToken', res.access)
+      await localStorage.setItem('refreshToken', res.refresh)
     } else {
-      await sessionStorage.setItem('accessToken', res.access);
-      await sessionStorage.setItem('refreshToken', res.refresh);
+      await sessionStorage.setItem('accessToken', res.access)
+      await sessionStorage.setItem('refreshToken', res.refresh)
     }
-    window.location.href = '/dashboard';
+    window.location.href = '/dashboard'
   }
 
   return (
@@ -100,9 +101,7 @@ export default function Login() {
                 <CCardBody className="text-center">
                   <div className="pt-5">
                     <h2>Registre-se</h2>
-                    <p>
-                      Para testar a plataforma contate o administrador
-                    </p>
+                    <p>Para testar a plataforma contate o administrador</p>
                     {/*<Link to="/register">*/}
                     {/*  <CButton color="primary" className="mt-3" active tabIndex={-1}>*/}
                     {/*    Register Now!*/}

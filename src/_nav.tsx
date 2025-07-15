@@ -1,7 +1,8 @@
 import CIcon from '@coreui/icons-react'
 import {
   cilBell,
-  cilCalculator, cilCart,
+  cilCalculator,
+  cilCart,
   cilChartPie,
   cilCursor,
   cilDescription,
@@ -14,8 +15,7 @@ import {
   cilStar,
 } from '@coreui/icons'
 import { CNavGroup, CNavItem, CNavTitle } from '@coreui/react'
-import {Fragment} from "react";
-import Contributions from "@/views/contributions/Contributions";
+import { Fragment } from 'react'
 
 const _nav = [
   {

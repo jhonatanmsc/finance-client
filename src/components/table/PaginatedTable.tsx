@@ -1,43 +1,46 @@
 import {
-  CButton, CCard,
+  CCard,
   CCardBody,
   CCardHeader,
   CCol,
   CFormLabel,
   CFormSelect,
-  CInputGroup, CPagination, CPaginationItem,
-  CRow, CSpinner,
-  CTable, CTableBody, CTableDataCell,
-  CTableHead, CTableHeaderCell, CTableRow
-} from "@coreui/react";
-import React, {Suspense, useEffect, useState} from "react";
-import api from "@/services/baseApi";
-import Pagination from "@/components/table/Pagination";
+  CInputGroup,
+  CRow,
+  CSpinner,
+  CTable,
+  CTableBody,
+  CTableDataCell,
+  CTableHead,
+  CTableHeaderCell,
+  CTableRow,
+} from '@coreui/react'
+import React, { Suspense, useEffect } from 'react'
+import Pagination from '@/components/table/Pagination'
 
 type PaginatedTablePros = {
-  qtyPages: number;
-  title: string;
-  perPage: number;
-  currentPage: number;
-  filters?: React.ReactNode;
-  headers: Array<any>;
-  data: Array<object>;
-  setPageSize: any;
-  pageOptions: any;
-  pagination?: PaginationType;
-  setPage(number: number): any;
-  setPageOptions(mPageOptions: {value: number; label: string}[]): void;
+  qtyPages: number
+  title: string
+  perPage: number
+  currentPage: number
+  filters?: React.ReactNode
+  headers: Array<any>
+  data: Array<object>
+  setPageSize: any
+  pageOptions: any
+  pagination?: PaginationType
+  setPage(number: number): any
+  setPageOptions(mPageOptions: { value: number; label: string }[]): void
 }
 
 export default function PaginatedTable(props: PaginatedTablePros) {
-
   useEffect(() => {
     let mPageOptions = Array.from({ length: 5 }, (_, i) => ({
       value: (i + 1) * 20,
       label: `${(i + 1) * 20}`,
-    }));
-    props.setPageOptions(mPageOptions);
-  }, []);
+    }))
+    props.setPageOptions(mPageOptions)
+  }, [])
 
   return (
     <CCard className="mb-4">
@@ -48,17 +51,15 @@ export default function PaginatedTable(props: PaginatedTablePros) {
         <CRow className="w-100 mb-3">
           <CCol sm={2}>
             <CInputGroup>
-              <CFormLabel htmlFor="contributions" className="me-3">n° de páginas</CFormLabel>
+              <CFormLabel htmlFor="contributions" className="me-3">
+                n° de páginas
+              </CFormLabel>
               <CFormSelect
                 id="page-size"
                 onChange={(e) => props.setPageSize(parseInt(e.target.value))}
               >
                 {props.pageOptions.map((pg: any) => (
-                  <option
-                    value={pg.value}
-                    selected={pg.value === props.currentPage}
-                    key={pg.value}
-                  >
+                  <option value={pg.value} selected={pg.value === props.currentPage} key={pg.value}>
                     {pg.label}
                   </option>
                 ))}
@@ -73,7 +74,9 @@ export default function PaginatedTable(props: PaginatedTablePros) {
           <CTableHead>
             <CTableRow>
               {props.headers.map((k: string, cellIndex: number) => (
-                <CTableHeaderCell key={cellIndex} scope="col">{k}</CTableHeaderCell>
+                <CTableHeaderCell key={cellIndex} scope="col">
+                  {k}
+                </CTableHeaderCell>
               ))}
             </CTableRow>
           </CTableHead>

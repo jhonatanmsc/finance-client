@@ -1,15 +1,15 @@
 import React, { lazy, Suspense, useEffect } from 'react'
-import {BrowserRouter, HashRouter, Navigate, Outlet, Route, Routes} from 'react-router-dom'
-import {Provider, useSelector} from 'react-redux'
+import { BrowserRouter, Navigate, Outlet, Route, Routes } from 'react-router-dom'
+import { Provider, useSelector } from 'react-redux'
 
 import { CSpinner, useColorModes } from '@coreui/react'
 import './scss/style.scss'
 
 // We use those styles to show code examples, you should remove them in your application.
 import './scss/examples.scss'
-import Page401 from "@/views/pages/page401/Page401";
-import store from "@/store";
-import {ToastStackMessage} from "@/components/ToastMessage";
+import Page401 from '@/views/pages/page401/Page401'
+import store from '@/store'
+import { ToastStackMessage } from '@/components/ToastMessage'
 
 // Containers
 const DefaultLayout = lazy(() => import('./layout/DefaultLayout'))
@@ -28,7 +28,7 @@ const PrivateRoute = () => {
 const App = () => {
   const { isColorModeSet, setColorMode } = useColorModes('coreui-free-react-admin-template-theme')
   // @ts-ignore
-  const storedTheme = useSelector((state ) => state.theme)
+  const storedTheme = useSelector((state) => state.theme)
 
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.href.split('?')[1])

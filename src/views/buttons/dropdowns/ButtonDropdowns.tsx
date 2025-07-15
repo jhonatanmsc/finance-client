@@ -12,7 +12,7 @@ import {
   CDropdownToggle,
   CRow,
 } from '@coreui/react'
-import {DocsComponents, DocsExample} from "../../../components";
+import { DocsComponents, DocsExample } from '../../../components'
 
 export default function ButtonDropdowns() {
   return (

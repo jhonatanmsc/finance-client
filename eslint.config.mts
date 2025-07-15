@@ -1,7 +1,10 @@
 import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended'
 import eslintPluginReact from 'eslint-plugin-react'
 import eslintPluginReactHooks from 'eslint-plugin-react-hooks'
+import eslintPluginUnusedImports from 'eslint-plugin-unused-imports';
+import prettier from 'eslint-config-prettier';
 import eslintPluginTypescript from '@typescript-eslint/eslint-plugin'
+import parserTs from '@typescript-eslint/parser';
 import globals from 'globals'
 
 export default [
@@ -43,7 +46,7 @@ export default [
   {
     files: ['src/**/*.{ts,tsx}'],
     languageOptions: {
-      parser: await import('@typescript-eslint/parser'),
+      parser: parserTs,
       parserOptions: {
         ecmaVersion: 'latest',
         sourceType: 'module',
@@ -57,15 +60,26 @@ export default [
     },
     plugins: {
       '@typescript-eslint': eslintPluginTypescript,
+      'unused-imports': eslintPluginUnusedImports,
     },
     rules: {
       ...eslintPluginTypescript.configs.recommended.rules,
       // Regras adicionais opcionais:
       '@typescript-eslint/no-unused-vars': ['warn'],
       '@typescript-eslint/explicit-function-return-type': 'off',
+      'unused-imports/no-unused-imports': 'error',
+      'unused-imports/no-unused-vars': [
+        'warn',
+        {
+          vars: 'all',
+          varsIgnorePattern: '^_',
+          args: 'after-used',
+          argsIgnorePattern: '^_',
+        },
+      ],
     },
   },
-
+  prettier,
   // Prettier no final
   eslintPluginPrettierRecommended,
 ]
