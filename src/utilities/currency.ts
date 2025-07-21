@@ -8,5 +8,6 @@ export function decimalToBRL(value: string | number, minFraction = 2): string {
     style: 'decimal',
     currency: 'BRL',
     minimumFractionDigits: minFraction,
+    maximumFractionDigits: minFraction,
   }).format(number)
 }
