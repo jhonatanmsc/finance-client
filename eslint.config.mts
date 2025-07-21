@@ -67,6 +67,13 @@ export default [
       // Regras adicionais opcionais:
       '@typescript-eslint/no-unused-vars': ['warn'],
       '@typescript-eslint/explicit-function-return-type': 'off',
+      "@typescript-eslint/no-explicit-any": "off",
+      '@typescript-eslint/ban-ts-comment': [
+        'error',
+        {
+          'ts-ignore': false, // <-- allow ts-ignore
+        },
+      ],
       'unused-imports/no-unused-imports': 'error',
       'unused-imports/no-unused-vars': [
         'warn',
