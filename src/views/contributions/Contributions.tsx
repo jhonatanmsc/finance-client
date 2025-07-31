@@ -58,7 +58,6 @@ export default function Contributions() {
 
   useEffect(() => {
     let filters = []
-    console.log(goalsTofilter)
     for (let goal of goalsTofilter) filters.push(`goals[]=${goal.value}`)
     for (let supp of supplierTofilter) filters.push(`suppliers[]=${supp.value}`)
     let targetUrl = '/contributions'
@@ -74,6 +73,7 @@ export default function Contributions() {
       let contribs = res.results.map((contr: any) => {
         let date = new Date(contr.created_at)
         return {
+          id: contr.id,
           Título: contr.title.length > 20 ? contr.title.substring(0, 20) + '...' : contr.title,
           Descrição:
             contr.description.length > 20
@@ -98,49 +98,51 @@ export default function Contributions() {
     })
   }, [page, pageSize, reloadData])
 
+  const CustomFilters = () => (
+    <CRow className="w-100 mb-3">
+      <CCol sm={5}>
+        <CFormLabel htmlFor={goalInputId} className="me-3">
+          Objetivos
+        </CFormLabel>
+        <div ref={goalsSelectRef}>
+          <Select
+            isMulti
+            components={animatedComponents}
+            options={goals}
+            onChange={(vl) => setGoalsTofilter(vl)}
+          />
+        </div>
+      </CCol>
+      <CCol sm={5}>
+        <CFormLabel htmlFor={supplierInputId} className="me-3">
+          Fornecedores
+        </CFormLabel>
+        <div ref={suppliersSelectRef}>
+          <Select
+            isMulti
+            components={animatedComponents}
+            options={suppliers}
+            onChange={(vl) => setSupplierTofilter(vl)}
+          />
+        </div>
+      </CCol>
+      <CCol sm={2} className="d-flex align-items-end">
+        <CButton
+          color="primary"
+          className="rounded-pill"
+          onClick={() => setReloadData(reloadData + 1)}
+        >
+          <CIcon icon={cilSearch} /> Aplicar
+        </CButton>
+      </CCol>
+    </CRow>
+  )
+
   return (
     <>
       <PaginatedTable
         title="Contribuições"
-        filters={
-          <CRow className="w-100 mb-3">
-            <CCol sm={5}>
-              <CFormLabel htmlFor={goalInputId} className="me-3">
-                Objetivos
-              </CFormLabel>
-              <div ref={goalsSelectRef}>
-                <Select
-                  isMulti
-                  components={animatedComponents}
-                  options={goals}
-                  onChange={(vl) => setGoalsTofilter(vl)}
-                />
-              </div>
-            </CCol>
-            <CCol sm={5}>
-              <CFormLabel htmlFor={supplierInputId} className="me-3">
-                Fornecedores
-              </CFormLabel>
-              <div ref={suppliersSelectRef}>
-                <Select
-                  isMulti
-                  components={animatedComponents}
-                  options={suppliers}
-                  onChange={(vl) => setSupplierTofilter(vl)}
-                />
-              </div>
-            </CCol>
-            <CCol sm={2} className="d-flex align-items-end">
-              <CButton
-                color="primary"
-                className="rounded-pill"
-                onClick={() => setReloadData(reloadData + 1)}
-              >
-                <CIcon icon={cilSearch} /> Aplicar
-              </CButton>
-            </CCol>
-          </CRow>
-        }
+        filters={<CustomFilters />}
         qtyPages={qtyPages}
         perPage={pageSize}
         currentPage={page}
@@ -158,6 +160,7 @@ export default function Contributions() {
         ]}
         data={contributions}
         pagination={paginationData}
+        baseUrl="contribuicoes"
         setPageOptions={setPageOptions}
         setPageSize={setPageSize}
         setPage={setPage}

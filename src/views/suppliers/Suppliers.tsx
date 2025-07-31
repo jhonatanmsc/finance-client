@@ -61,6 +61,7 @@ export default function Suppliers() {
         headers={['Nome', 'Avaliação', 'Total R$']}
         data={suppliers}
         pagination={paginationData}
+        baseUrl="fornecedores"
         setPageOptions={setPageOptions}
         setPageSize={setPageSize}
         setPage={setPage}

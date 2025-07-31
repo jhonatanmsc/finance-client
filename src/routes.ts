@@ -1,5 +1,4 @@
 import React from 'react'
-import Goals from '@/views/goals/Goals'
 
 const Dashboard = React.lazy(() => import('./views/dashboard/Dashboard'))
 const Colors = React.lazy(() => import('./views/theme/colors/Colors'))
@@ -52,15 +51,24 @@ const Toasts = React.lazy(() => import('./views/notifications/toasts/Toasts'))
 
 const Widgets = React.lazy(() => import('./views/widgets/Widgets'))
 const Contributions = React.lazy(() => import('./views/contributions/Contributions'))
+const CreateContributions = React.lazy(() => import('./views/contributions/CreateContributions'))
 const Suppliers = React.lazy(() => import('./views/suppliers/Suppliers'))
+const CreateSuppliers = React.lazy(() => import('./views/suppliers/CreateSuppliers'))
 const Goals = React.lazy(() => import('./views/goals/Goals'))
+const CreateGoals = React.lazy(() => import('./views/goals/CreateGoals'))
 
 const routes = [
   { path: '/', exact: true, name: 'Home' },
   { path: '/dashboard', name: 'Dashboard', element: Dashboard },
   { path: '/contribuicoes', name: 'Contribuições', element: Contributions },
+  { path: '/contribuicoes/novo', name: 'Nova Contribuição', element: CreateContributions },
+  { path: '/contribuicoes/:id/editar', name: 'Editar Contribuição', element: CreateContributions },
   { path: '/fornecedores', name: 'Fornecedores', element: Suppliers },
+  { path: '/fornecedores/novo', name: 'Novo Fornecedore', element: CreateSuppliers },
+  { path: '/fornecedores/:id/editar', name: 'Novo Fornecedore', element: CreateSuppliers },
   { path: '/objetivos', name: 'Objetivos', element: Goals },
+  { path: '/objetivos/novo', name: 'Novo Objetivo', element: CreateGoals },
+  { path: '/objetivos/:id/editar', name: 'Novo Objetivo', element: CreateGoals },
   { path: '/theme', name: 'Theme', element: Colors, exact: true },
   { path: '/theme/colors', name: 'Colors', element: Colors },
   { path: '/theme/typography', name: 'Typography', element: Typography },
