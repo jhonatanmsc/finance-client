@@ -117,7 +117,7 @@ export default function CreateContributions() {
       <CCard className="mb-4">
         <CCardHeader>
           <strong>{pageTitle}</strong>
-          {isEditMode ?? (
+          {isEditMode && (
             <div className="float-end">
               <CButton
                 color="danger"

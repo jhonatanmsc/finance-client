@@ -98,51 +98,49 @@ export default function Contributions() {
     })
   }, [page, pageSize, reloadData])
 
-  const CustomFilters = () => (
-    <CRow className="w-100 mb-3">
-      <CCol sm={5}>
-        <CFormLabel htmlFor={goalInputId} className="me-3">
-          Objetivos
-        </CFormLabel>
-        <div ref={goalsSelectRef}>
-          <Select
-            isMulti
-            components={animatedComponents}
-            options={goals}
-            onChange={(vl) => setGoalsTofilter(vl)}
-          />
-        </div>
-      </CCol>
-      <CCol sm={5}>
-        <CFormLabel htmlFor={supplierInputId} className="me-3">
-          Fornecedores
-        </CFormLabel>
-        <div ref={suppliersSelectRef}>
-          <Select
-            isMulti
-            components={animatedComponents}
-            options={suppliers}
-            onChange={(vl) => setSupplierTofilter(vl)}
-          />
-        </div>
-      </CCol>
-      <CCol sm={2} className="d-flex align-items-end">
-        <CButton
-          color="primary"
-          className="rounded-pill"
-          onClick={() => setReloadData(reloadData + 1)}
-        >
-          <CIcon icon={cilSearch} /> Aplicar
-        </CButton>
-      </CCol>
-    </CRow>
-  )
-
   return (
     <>
       <PaginatedTable
         title="Contribuições"
-        filters={<CustomFilters />}
+        filters={
+          <CRow className="w-100 mb-3">
+            <CCol sm={5}>
+              <CFormLabel htmlFor={goalInputId} className="me-3">
+                Objetivos
+              </CFormLabel>
+              <div ref={goalsSelectRef}>
+                <Select
+                  isMulti
+                  components={animatedComponents}
+                  options={goals}
+                  onChange={(vl) => setGoalsTofilter(vl)}
+                />
+              </div>
+            </CCol>
+            <CCol sm={5}>
+              <CFormLabel htmlFor={supplierInputId} className="me-3">
+                Fornecedores
+              </CFormLabel>
+              <div ref={suppliersSelectRef}>
+                <Select
+                  isMulti
+                  components={animatedComponents}
+                  options={suppliers}
+                  onChange={(vl) => setSupplierTofilter(vl)}
+                />
+              </div>
+            </CCol>
+            <CCol sm={2} className="d-flex align-items-end">
+              <CButton
+                color="primary"
+                className="rounded-pill"
+                onClick={() => setReloadData(reloadData + 1)}
+              >
+                <CIcon icon={cilSearch} /> Aplicar
+              </CButton>
+            </CCol>
+          </CRow>
+        }
         qtyPages={qtyPages}
         perPage={pageSize}
         currentPage={page}
