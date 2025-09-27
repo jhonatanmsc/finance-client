@@ -12,7 +12,6 @@ export default function Goals() {
   const [qtyPages, setQtyPages] = useState(1)
   const [pageOptions, setPageOptions] = useState<{ value: number; label: string }[]>([])
   const [paginationData, setPaginationData] = useState<PaginationType>()
-  const [showCreateModal, setShowCreateModal] = useState<boolean>(false)
 
   useEffect(() => {
     let mPageOptions = Array.from({ length: 5 }, (_, i) => ({
@@ -34,13 +33,13 @@ export default function Goals() {
       })
       let mGoals = res.results.map((goal: any) => {
         let date = new Date(goal.created_at)
-        // let moneyLeft = new Decimal(goal.total).minus(new Decimal(goal.budget))
+        let remaining = goal.total - goal.value
         return {
           id: goal.id,
           Título: goal.title,
           Total: decimalToBRL(goal.total),
           Orçamento: decimalToBRL(goal.value),
-          // Progresso: goal.progress,
+          Faltando: decimalToBRL(remaining * -1),
           // Faltando: decimalToBRL(moneyLeft.toNumber()),
           // 'Total R$': decimalToBRL(goal.total),
           // Orçamento: decimalToBRL(goal.budget),
@@ -65,7 +64,7 @@ export default function Goals() {
         perPage={pageSize}
         currentPage={page}
         pageOptions={pageOptions}
-        headers={['Título', 'Total', 'Orçamento']}
+        headers={['Título', 'Total', 'Orçamento', 'Faltando']}
         data={goals}
         pagination={paginationData}
         baseUrl="objetivos"
