@@ -8,6 +8,12 @@ import makeAnimated from 'react-select/animated'
 import CIcon from '@coreui/icons-react'
 import { cilSearch } from '@coreui/icons'
 import PaginatedTable from '@/components/table/PaginatedTable'
+import SelectInput from '@/components/SelectInput'
+
+interface SelectionOption {
+  id: string
+  value: string
+}
 
 export default function Contributions() {
   const [contributions, setContributions] = useState([])
@@ -18,8 +24,8 @@ export default function Contributions() {
   const suppliersSelectRef = useRef(null)
   const [goalInputId, setGoalInputId] = useState('')
   const [supplierInputId, setSupplierInputId] = useState('')
-  const [goalsTofilter, setGoalsTofilter] = useState<MultiValue<unknown>>([])
-  const [supplierTofilter, setSupplierTofilter] = useState<MultiValue<unknown>>([])
+  const [goalsTofilter, setGoalsTofilter] = useState<MultiValue<SelectionOption>>([])
+  const [supplierTofilter, setSupplierTofilter] = useState<MultiValue<SelectionOption>>([])
   // pagination
   const [page, setPage] = useState(1)
   const [pageSize, setPageSize] = useState(20)
@@ -105,30 +111,20 @@ export default function Contributions() {
         filters={
           <CRow className="w-100 mb-3">
             <CCol sm={5}>
-              <CFormLabel htmlFor={goalInputId} className="me-3">
-                Objetivos
-              </CFormLabel>
-              <div ref={goalsSelectRef}>
-                <Select
-                  isMulti
-                  components={animatedComponents}
-                  options={goals}
-                  onChange={(vl) => setGoalsTofilter(vl)}
-                />
-              </div>
+              <SelectInput
+                label="Objetivos"
+                options={goals}
+                onChange={(vl) => setGoalsTofilter(vl)}
+                isMulti
+              />
             </CCol>
             <CCol sm={5}>
-              <CFormLabel htmlFor={supplierInputId} className="me-3">
-                Fornecedores
-              </CFormLabel>
-              <div ref={suppliersSelectRef}>
-                <Select
-                  isMulti
-                  components={animatedComponents}
-                  options={suppliers}
-                  onChange={(vl) => setSupplierTofilter(vl)}
-                />
-              </div>
+              <SelectInput
+                label="Fornecedores"
+                isMulti
+                options={suppliers}
+                onChange={(vl) => setSupplierTofilter(vl)}
+              />
             </CCol>
             <CCol sm={2} className="d-flex align-items-end">
               <CButton
