@@ -19,11 +19,8 @@ export default function Contributions() {
   const [contributions, setContributions] = useState([])
   const [suppliers, setSuppliers] = useState([])
   const [goals, setGoals] = useState([])
-  const animatedComponents = makeAnimated()
   const goalsSelectRef = useRef(null)
   const suppliersSelectRef = useRef(null)
-  const [goalInputId, setGoalInputId] = useState('')
-  const [supplierInputId, setSupplierInputId] = useState('')
   const [goalsTofilter, setGoalsTofilter] = useState<MultiValue<SelectionOption>>([])
   const [supplierTofilter, setSupplierTofilter] = useState<MultiValue<SelectionOption>>([])
   // pagination
@@ -35,20 +32,6 @@ export default function Contributions() {
   const [reloadData, setReloadData] = useState<number>(0)
 
   useEffect(() => {
-    if (goalsSelectRef.current) {
-      // @ts-ignore
-      const input = goalsSelectRef.current.querySelector('input')
-      if (input?.id) {
-        setGoalInputId(input.id)
-      }
-    }
-    if (suppliersSelectRef.current) {
-      // @ts-ignore
-      const input = suppliersSelectRef.current.querySelector('input')
-      if (input?.id) {
-        setSupplierInputId(input.id)
-      }
-    }
     let mPageOptions = Array.from({ length: 5 }, (_, i) => ({
       value: (i + 1) * 20,
       label: `${(i + 1) * 20}`,
