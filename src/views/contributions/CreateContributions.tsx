@@ -1,5 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
-import Select from 'react-select'
+import React, { useEffect, useState } from 'react'
 import {
   CButton,
   CCard,
@@ -8,7 +7,6 @@ import {
   CCol,
   CForm,
   CFormInput,
-  CFormLabel,
   CFormTextarea,
   CRow,
 } from '@coreui/react'
@@ -19,6 +17,8 @@ import Decimal from 'decimal.js'
 import { CenteredModal } from '@/views/modals/CenteredModal'
 import CIcon from '@coreui/icons-react'
 import { cilTrash } from '@coreui/icons'
+import CurrencyInput from '@/components/CurrencyInput'
+import SelectInput from '@/components/SelectInput'
 
 export default function CreateContributions() {
   const { id } = useParams()
@@ -26,17 +26,13 @@ export default function CreateContributions() {
   const [pageTitle, setPageTitle] = useState('Nova Contribuição')
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
-  const [value, setValue] = useState<number>(0.0)
+  const [value, setValue] = useState<number | null>(0)
   const [qty, setQty] = useState<number>(1.0)
   const [concludedAt, setConcludedAt] = useState<string>()
   const [mGoalsTofilter, setMGoalsTofilter] = useState<any>()
   const [mSupplierTofilter, setMSupplierTofilter] = useState<any>()
   const [goals, setGoals] = useState([])
   const [suppliers, setSuppliers] = useState([])
-  const mGoalsSelectRef = useRef(null)
-  const mSuppliersSelectRef = useRef(null)
-  const [mGoalInputId, setMGoalInputId] = useState('')
-  const [mSupplierInputId, setMSupplierInputId] = useState('')
   const animatedComponents = makeAnimated()
   const navigate = useNavigate()
   const [contributionRaw, setContributionRaw] = useState<any>(null)
@@ -44,20 +40,6 @@ export default function CreateContributions() {
   const [reason, setReason] = useState('')
 
   useEffect(() => {
-    if (mGoalsSelectRef.current) {
-      // @ts-ignore
-      const input = mGoalsSelectRef.current.querySelector('input')
-      if (input?.id) {
-        setMGoalInputId(input.id)
-      }
-    }
-    if (mSuppliersSelectRef.current) {
-      // @ts-ignore
-      const input = mSuppliersSelectRef.current.querySelector('input')
-      if (input?.id) {
-        setMSupplierInputId(input.id)
-      }
-    }
     api.get(`/goals?page=1&page_size=100`).then((res: any) => {
       setGoals(res.results.map((it: any) => ({ value: it.id, label: it.title })))
     })
@@ -91,7 +73,7 @@ export default function CreateContributions() {
     let data = {
       title: title,
       description: description,
-      value: new Decimal(value),
+      value: new Decimal(value ?? 0),
       quantity: new Decimal(qty),
       goal: mGoalsTofilter?.value,
       supplier: mSupplierTofilter?.value,
@@ -151,15 +133,12 @@ export default function CreateContributions() {
               ></CFormTextarea>
             </CCol>
             <CCol md={6}>
-              <CFormInput
-                type="number"
+              <CurrencyInput
                 id="input-value"
                 label="Valor"
-                step="0.01"
                 value={value}
-                onChange={(e) => {
-                  setValue(Number(e.target.value))
-                }}
+                onChange={setValue}
+                placeholder="R$ 0,00"
               />
             </CCol>
             <CCol md={6}>
@@ -175,30 +154,21 @@ export default function CreateContributions() {
               />
             </CCol>
             <CCol md={6}>
-              <CFormLabel htmlFor={mGoalInputId} className="me-3">
-                Objetivos
-              </CFormLabel>
-              <div ref={mGoalsSelectRef}>
-                <Select
-                  components={animatedComponents}
-                  options={goals}
-                  value={mGoalsTofilter}
-                  onChange={(vl) => setMGoalsTofilter(vl)}
-                />
-              </div>
+              <SelectInput
+                label="Objetivos"
+                components={animatedComponents}
+                options={goals}
+                value={mGoalsTofilter}
+                onChange={(vl) => setMGoalsTofilter(vl)}
+              />
             </CCol>
             <CCol md={6}>
-              <CFormLabel htmlFor={mSupplierInputId} className="me-3">
-                Fornecedores
-              </CFormLabel>
-              <div ref={mSuppliersSelectRef}>
-                <Select
-                  components={animatedComponents}
-                  options={suppliers}
-                  value={mSupplierTofilter}
-                  onChange={(vl) => setMSupplierTofilter(vl)}
-                />
-              </div>
+              <SelectInput
+                label="Fornecedores"
+                options={suppliers}
+                value={mSupplierTofilter}
+                onChange={(vl) => setMSupplierTofilter(vl)}
+              />
             </CCol>
             <CCol md={6}>
               <CFormInput

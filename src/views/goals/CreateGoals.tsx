@@ -17,6 +17,7 @@ import Decimal from 'decimal.js'
 import { CenteredModal } from '@/views/modals/CenteredModal'
 import CIcon from '@coreui/icons-react'
 import { cilTrash } from '@coreui/icons'
+import CurrencyInput from '@/components/CurrencyInput'
 
 export default function CreateGoals() {
   const { id } = useParams()
@@ -24,7 +25,7 @@ export default function CreateGoals() {
   const [pageTitle, setPageTitle] = useState('Novo Objetivo')
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
-  const [value, setValue] = useState<number>(0.0)
+  const [value, setValue] = useState<number | null>(0.0)
   const [concludedAt, setConcludedAt] = useState<string>()
   const navigate = useNavigate()
   const [goalRaw, setGoalRaw] = useState<any>(null)
@@ -54,7 +55,7 @@ export default function CreateGoals() {
     let data = {
       title: title,
       description: description,
-      value: new Decimal(value),
+      value: new Decimal(value ?? 0),
       concluded_at: concludedAt,
     }
     api.post(`/goals/`, data)
@@ -111,15 +112,12 @@ export default function CreateGoals() {
               ></CFormTextarea>
             </CCol>
             <CCol md={6}>
-              <CFormInput
-                type="number"
+              <CurrencyInput
                 id="input-value"
                 label="Valor"
-                step="0.01"
                 value={value}
-                onChange={(e) => {
-                  setValue(Number(e.target.value))
-                }}
+                onChange={setValue}
+                placeholder="R$ 0,00"
               />
             </CCol>
             <CCol md={6}>
